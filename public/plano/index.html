@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meu Plano · Passaporte Aberto</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#08162d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Barlow+Condensed:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<script>
+  /* Link do suporte (WhatsApp ou e-mail). Enquanto vazio, o botão de suporte fica escondido. */
+  const SUPORTE_URL = "";
+</script>
+<style>
+/* Área do comprador: um plano de mudança que a pessoa marca, passo a passo. Mesmo visual da página de vendas. */
+:root {
+  --night: #08162d; --night-2: #0f2445; --signal: #ffd21f; --go: #00b26b; --go-dark: #00915a; --stamp: #e0363f;
+  --paper: #f2f4f7; --card: #ffffff; --ink: #0d1626; --muted: #56667d; --line: #d8dee7;
+  --on-night: #eaf0f8; --on-night-muted: #9fb0c8; --night-line: rgba(255, 255, 255, .12);
+  --f-display: "Archivo", "Arial Black", sans-serif; --f-body: "Figtree", "Segoe UI", system-ui, sans-serif; --f-board: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 880px; margin: 0 auto; padding-left: var(--gl); padding-right: var(--gr); }
+h1, h2, h3 { font-family: var(--f-display); font-stretch: 110%; line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.lbl { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .13em; font-size: .82rem; font-weight: 600; color: var(--muted); }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; border-radius: 999px; padding: 14px 24px; background: var(--go); color: #fff; font-family: var(--f-display); font-weight: 800; font-stretch: 105%; text-transform: uppercase; font-size: .98rem; text-decoration: none; }
+.btn:hover { background: #00c476; }
+.btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px currentColor; }
+.link { background: none; border: 0; padding: 0; font: inherit; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* topo */
+.top { position: relative; background: var(--night); color: var(--on-night); overflow: hidden; isolation: isolate; padding-top: env(safe-area-inset-top, 0px); }
+.top .bg { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; opacity: .55; transition: background-image .5s; }
+.top::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8, 22, 45, .55), rgba(8, 22, 45, .96)); }
+.bar { display: flex; justify-content: space-between; align-items: center; padding-block: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 900; font-stretch: 118%; color: #fff; text-decoration: none; }
+.logo .m { width: 28px; height: 28px; border-radius: 8px; background: var(--signal); display: grid; place-items: center; }
+.logo svg { width: 17px; height: 17px; }
+.logo b { color: var(--signal); }
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding-block: 18px 34px; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; }
+.hero .dest { display: flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--signal); font-family: var(--f-board); font-weight: 700; letter-spacing: .08em; font-size: 1.15rem; text-transform: uppercase; }
+.hero .dest img { width: 34px; border-radius: 4px; }
+.hero .sub { color: var(--on-night-muted); margin-top: 8px; max-width: 46ch; }
+.ring { position: relative; width: 132px; height: 132px; }
+.ring svg { width: 132px; height: 132px; transform: rotate(-90deg); }
+.ring .pct { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.ring .pct b { font-family: var(--f-display); font-size: 2rem; font-weight: 900; line-height: 1; }
+.ring .pct span { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; color: var(--on-night-muted); }
+.level { display: inline-flex; gap: 8px; align-items: center; margin-top: 14px; background: rgba(255, 210, 31, .14); color: var(--signal); border: 1px solid rgba(255, 210, 31, .35); border-radius: 999px; padding: 5px 12px; font-family: var(--f-board); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .9rem; }
+
+main { padding-block: 26px 80px; display: grid; gap: 18px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: clamp(18px, 3vw, 26px); display: grid; gap: 14px; }
+.card h2 { font-size: 1.35rem; font-stretch: 105%; }
+
+/* configuração */
+.flags { display: grid; grid-template-columns: repeat(auto-fill, minmax(122px, 1fr)); gap: 8px; }
+.fl { display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 12px; border: 2px solid var(--line); background: var(--paper); cursor: pointer; font: inherit; font-weight: 600; text-align: left; color: var(--ink); }
+.fl img { width: 28px; border-radius: 3px; flex: none; }
+.fl[aria-pressed="true"] { border-color: var(--go); background: #e2f6ec; }
+.row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field input { width: 100%; font: inherit; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--paper); color: var(--ink); }
+.field input:focus { border-color: var(--go); outline: none; }
+.calc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.stat { background: var(--paper); border-radius: 14px; padding: 12px 14px; }
+.stat b { display: block; font-family: var(--f-display); font-weight: 900; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+.stat.hl { background: var(--night); color: var(--on-night); }
+.stat.hl b { color: var(--signal); }
+.note { font-size: .88rem; color: var(--muted); }
+
+/* fases */
+.phase { border: 1px solid var(--line); border-radius: 18px; background: var(--card); overflow: hidden; }
+.phase > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; }
+.phase > summary::-webkit-details-marker { display: none; }
+.ph-n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--night); color: var(--signal); font-family: var(--f-board); font-weight: 700; font-size: 1.15rem; }
+.phase.done .ph-n { background: var(--go); color: #fff; }
+.ph-t b { display: block; font-family: var(--f-display); font-weight: 800; font-stretch: 105%; font-size: 1.08rem; }
+.ph-t span { color: var(--muted); font-size: .9rem; }
+.ph-c { font-family: var(--f-board); font-weight: 700; color: var(--muted); letter-spacing: .06em; }
+.tasks { list-style: none; margin: 0; padding: 0 18px 14px; display: grid; gap: 6px; }
+.task { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 12px; border-radius: 12px; background: var(--paper); cursor: pointer; }
+.task input { appearance: none; width: 26px; height: 26px; margin: 0; border-radius: 8px; border: 2px solid #b9c3d1; background: #fff; display: grid; place-items: center; cursor: pointer; transition: background .15s, border-color .15s; }
+.task input:checked { background: var(--go); border-color: var(--go); }
+.task input:checked::after { content: ""; width: 11px; height: 6px; border-left: 3px solid #fff; border-bottom: 3px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+.task .tt { font-weight: 700; }
+.task.ok .tt { text-decoration: line-through; color: var(--muted); }
+.task .td { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.task .ch { display: inline-block; margin-top: 6px; font-family: var(--f-board); text-transform: uppercase; letter-spacing: .08em; font-size: .76rem; font-weight: 700; color: var(--go-dark); }
+.pop { animation: pop .35s ease; }
+@keyframes pop { 50% { transform: scale(1.03); } }
+
+.foot { text-align: center; color: var(--muted); font-size: .88rem; display: grid; gap: 10px; justify-items: center; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 140%); background: var(--night); color: var(--on-night); border-radius: 999px; padding: 12px 20px; font-weight: 600; transition: transform .35s ease; z-index: 30; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { transform: translate(-50%, 0); }
+.toast b { color: var(--signal); }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .ring { justify-self: start; }
+  .row, .calc { grid-template-columns: 1fr; }
+  .bar .lbl { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-plane" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol></svg>
+
+<header class="top">
+  <div class="bg" id="bg"></div>
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="../"><span class="m"><svg viewBox="0 0 24 24"><use href="#i-plane" style="color:#08162d"/></svg></span>PASSAPORTE <b>ABERTO</b></a>
+      <span class="lbl" style="color:var(--on-night-muted)">Área do comprador</span>
+    </div>
+    <div class="hero">
+      <div>
+        <span class="lbl" style="color:var(--signal)">Meu plano de mudança</span>
+        <h1 id="hTitle">Monte o seu plano em 1 minuto</h1>
+        <div class="dest" id="hDest" hidden></div>
+        <p class="sub" id="hSub">Escolha o país, coloque a data e veja exatamente o que fazer, na ordem certa. Seu progresso fica salvo neste celular.</p>
+        <span class="level" id="level" hidden></span>
+      </div>
+      <div class="ring" id="ring" hidden>
+        <svg viewBox="0 0 132 132" aria-hidden="true"><circle cx="66" cy="66" r="56" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="12"/><circle id="arc" cx="66" cy="66" r="56" fill="none" stroke="#ffd21f" stroke-width="12" stroke-linecap="round" stroke-dasharray="351.86" stroke-dashoffset="351.86" style="transition:stroke-dashoffset .6s ease"/></svg>
+        <div class="pct"><b id="pct">0%</b><span>concluído</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="setup">
+    <h2>1. Para onde você vai?</h2>
+    <p class="note" id="fromQuiz" hidden></p>
+    <div class="flags" id="flags" role="group" aria-label="Escolha o país"></div>
+    <h2>2. Quando e com quanto?</h2>
+    <div class="row">
+      <label class="field"><span class="lbl">Mês da mudança</span><input type="month" id="fDate"></label>
+      <label class="field"><span class="lbl">Meta total (R$)</span><input type="number" id="fGoal" inputmode="numeric" min="0" step="500" placeholder="ex.: 30000"></label>
+      <label class="field"><span class="lbl">Já guardei (R$)</span><input type="number" id="fSaved" inputmode="numeric" min="0" step="100" placeholder="ex.: 2000"></label>
+    </div>
+    <p class="note">Não sabe a meta? O Passo 4 do guia mostra como calcular: custos de saída mais 6 meses de custo de vida no país.</p>
+    <div class="calc" id="calc" hidden>
+      <div class="stat"><span class="lbl">Faltam</span><b id="cMonths">0 meses</b></div>
+      <div class="stat"><span class="lbl">Falta juntar</span><b id="cLeft">R$ 0</b></div>
+      <div class="stat hl"><span class="lbl" style="color:var(--on-night-muted)">Guardar por mês</span><b id="cMonthly">R$ 0</b></div>
+    </div>
+  </section>
+
+  <section id="phases" class="grid" style="display:grid; gap:12px" aria-live="polite"></section>
+
+  <div class="foot">
+    <a class="btn" id="support" hidden target="_blank" rel="noopener">Falar com o suporte</a>
+    <button class="link" type="button" id="reset">Recomeçar o plano</button>
+    <p>Este plano é um guia de organização, baseado no Passaporte Aberto (edição novembro de 2026). Regras mudam: confirme sempre no site oficial do país.</p>
+  </div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  const C = {
+    portugal: ["Portugal", "pt", "portugal", "Capítulo Portugal", [
+      ["Escolher o visto: D1, D7 ou D8", "D1 se você tem contrato de trabalho, D7 se vive de renda, D8 se trabalha remoto."],
+      ["Juntar o contrato ou os comprovantes de renda", "Extratos, declaração de imposto e contrato, conforme o visto escolhido."],
+      ["Fazer o pedido no consulado ou no centro de vistos", "O atendimento é presencial: agende com antecedência."],
+      ["Ao chegar: NIF, NISS e agendamento na AIMA", "São os números de imposto e previdência, e o registro de residência."]]],
+    espanha: ["Espanha", "es", "espanha", "Capítulo Espanha", [
+      ["Escolher entre estudo e nômade digital", "As duas portas mais usadas por brasileiros que estão começando."],
+      ["Separar a comprovação de renda ou matrícula", "Nômade digital pede renda mensal comprovada (cerca de € 2.849)."],
+      ["Pedir o visto no consulado espanhol da sua região", "Confira a lista exata de documentos no site do consulado."],
+      ["Ao chegar: NIE/TIE e empadronamiento", "Lembre: com 2 anos de residência o brasileiro já pode pedir a cidadania."]]],
+    italia: ["Itália", "it", "italia", "Capítulo Itália", [
+      ["Confirmar a linha: pai, mãe, avô ou avó italianos", "Pela regra de 2025, bisnetos ficaram de fora."],
+      ["Pedir a certidão italiana do antepassado", "No comune onde ele nasceu."],
+      ["Tirar certidões brasileiras de inteiro teor da família", "Depois apostilar e traduzir para o italiano."],
+      ["Dar entrada no consulado ou na Itália", "Compare prazos e custos no capítulo antes de decidir."]]],
+    irlanda: ["Irlanda", "ie", "irlanda", "Capítulo Irlanda", [
+      ["Escolher escola de inglês credenciada", "Só cursos da lista oficial dão direito à permissão de trabalho."],
+      ["Separar a prova de fundos", "O valor exigido está no capítulo; confira no site oficial antes."],
+      ["Pagar o curso e contratar o seguro saúde", "Guarde os comprovantes para a imigração."],
+      ["Ao chegar: registro de imigração e número PPS", "O PPS é o que permite trabalhar e receber salário."]]],
+    canada: ["Canadá", "ca", "canada", "Capítulo Canadá", [
+      ["Fazer a prova de idioma (inglês ou francês)", "Francês dá pontos extras no Express Entry."],
+      ["Pedir a avaliação do diploma (ECA)", "Sem ela, o diploma brasileiro não pontua."],
+      ["Criar o perfil no Express Entry", "Seus pontos definem se você recebe o convite."],
+      ["Receber o convite e enviar os documentos", "Tenha a prova de fundos pronta antes do convite."]]],
+    eua: ["Estados Unidos", "us", "eua", "Capítulo Estados Unidos", [
+      ["Escolher a rota: estudo (F-1) ou EB-2 NIW", "Desconfie de quem promete green card rápido."],
+      ["Montar a prova financeira ou o dossiê profissional", "F-1 pede fundos; o NIW pede provas da sua carreira."],
+      ["Pagar as taxas e agendar a entrevista", "Inclua a nova taxa de integridade do visto no orçamento."],
+      ["Reforçar a reserva", "É o destino com o custo de entrada mais alto do guia."]]],
+    alemanha: ["Alemanha", "de", "alemanha", "Capítulo Alemanha", [
+      ["Checar o reconhecimento do diploma", "Consulte o portal oficial indicado no capítulo."],
+      ["Calcular seus pontos da Chancenkarte", "Idade, idioma, experiência e diploma contam pontos."],
+      ["Comprovar o sustento mensal", "Cerca de € 1.091 por mês enquanto procura emprego."],
+      ["Começar o alemão", "Mesmo o básico (A1/A2) soma pontos e abre portas."]]],
+    australia: ["Austrália", "au", "australia", "Capítulo Austrália", [
+      ["Escolher curso registrado e receber a carta de aceite", "Sem a carta (CoE) não há pedido de visto."],
+      ["Comprovar o custo de vida exigido", "AUD 29.710 por ano, além do curso e da passagem."],
+      ["Contratar o seguro saúde de estudante", "É obrigatório durante todo o visto."],
+      ["Pedir o visto de estudante online", "Confira a taxa atualizada no site do governo."]]],
+    japao: ["Japão", "jp", "japao", "Capítulo Japão", [
+      ["Conseguir o koseki do antepassado japonês", "É o registro familiar; sem ele o processo não anda."],
+      ["Reunir as certidões brasileiras da família", "De toda a linha até você."],
+      ["Apostilar e traduzir os documentos", "Siga a ordem: primeiro a apostila, depois a tradução."],
+      ["Pedir o visto de descendente no consulado", "É a porta mais simples para quem é nikkei."]]],
+    uruguai: ["Uruguai", "uy", "uruguai", "Capítulo Uruguai", [
+      ["Tirar os antecedentes da PF com apostila", "Brasileiro é isento da taxa de residência."],
+      ["Entrar no Uruguai com RG ou passaporte", "Pode entrar como turista e pedir a residência lá."],
+      ["Pedir a residência permanente Mercosul", "Pelo portal oficial gub.uy, na Dirección Nacional de Migración."],
+      ["Tirar a cédula uruguaia", "Com o comprovante do pedido já dá para trabalhar."]]],
+    argentina: ["Argentina", "ar", "argentina", "Capítulo Argentina", [
+      ["Apostilar certidão de nascimento e antecedentes", "Os dois são exigidos no pedido."],
+      ["Entrar na Argentina como turista", "Brasileiro entra com RG."],
+      ["Pedir a residência temporária no RaDEX", "Com o pedido aceito você recebe a residência precária e já pode trabalhar."],
+      ["Contratar um seguro saúde", "Desde 2025, a saúde pública só cobre emergência para quem não é residente permanente."]]],
+    chile: ["Chile", "cl", "chile", "Capítulo Chile", [
+      ["Apostilar os antecedentes da PF", "É o documento principal do pedido."],
+      ["Fazer o pedido online ainda no Brasil", "Hoje não dá para trocar o visto de turista estando no Chile."],
+      ["Com a aprovação, tirar a cédula no Registro Civil", "É o documento de identidade de estrangeiro."],
+      ["Planejar a residência definitiva", "Depois de 2 anos de residência temporária."]]],
+    paraguai: ["Paraguai", "py", "paraguai", "Capítulo Paraguai", [
+      ["Apostilar certidão de nascimento e antecedentes", "Se pedirem, faça também a tradução."],
+      ["Pedir a residência temporária Mercosul", "Na Migraciones, em Assunção, ou no atendimento itinerante."],
+      ["Tirar a cédula paraguaia", "Com a residência aprovada."],
+      ["Preparar a residência permanente", "Peça nos 90 dias antes de vencer os 2 anos; exige comprovar solvência."]]]
+  };
+  const ORDER = ["portugal", "espanha", "italia", "irlanda", "canada", "eua", "alemanha", "australia", "japao", "uruguai", "argentina", "chile", "paraguai"];
+  const PHASES = (k) => [
+    ["Esta semana", "Comece hoje, leva menos de 1 hora", [
+      ["Ler o capítulo \"Comece aqui\" do guia", "Confirme a sua porta de entrada no fluxograma.", "Comece aqui"],
+      ["Conferir a validade do passaporte", "Se vence em menos de 1 ano, renove antes de tudo.", "Passo 2"],
+      ["Tirar a certidão de antecedentes da Polícia Federal", "É grátis e sai pela internet.", "Passo 2"],
+      ["Definir a data e a meta de dinheiro", "Preencha os campos acima e veja quanto guardar por mês.", "Passo 4"]]],
+    ["Documentos", "6 a 12 meses antes", [
+      ["Pedir certidões atualizadas de inteiro teor", "Nascimento e, se for o caso, casamento.", "Passo 2"],
+      ["Apostilar os documentos no cartório", "Apostila de Haia, documento por documento.", "Passo 2"],
+      ["Fazer a tradução juramentada depois da apostila", "Traduzir antes é o erro que mais faz pagar duas vezes.", "Passo 2"]]],
+    ["Seu caminho para " + C[k][0], "As etapas da sua porta de entrada", C[k][4].map(t => [t[0], t[1], C[k][3]])],
+    ["Na mala", "No último mês", [
+      ["Separar a reserva de 6 meses de custo de vida", "É a regra mais segura do guia.", "Passo 4"],
+      ["Reservar moradia temporária para o 1º mês", "Assim você procura aluguel já no país, com calma.", "Passo 5"],
+      ["Originais e cópias na mala de mão", "Nunca despache documentos.", "Checklists"],
+      ["Ver com a Receita a saída definitiva do país", "Se for morar fora de vez, faça a comunicação de saída.", "Checklists"]]],
+    ["Primeiros 90 dias", "Já no novo país", [
+      ["Registro de residência e documento local", "A primeira coisa da primeira semana.", "Passo 5"],
+      ["Conta em banco e chip de celular locais", "Facilitam aluguel, salário e cadastro.", "Passo 5"],
+      ["Registrar-se no consulado brasileiro", "Ajuda com documentos e eleições lá de fora.", "Passo 5"]]]
+  ];
+  const LEVELS = [[0, "Planejando"], [25, "Documentado"], [50, "Pronto para aplicar"], [75, "Embarque à vista"], [100, "Pronto para voar"]];
+  const KEY = "pa_plan_v1";
+  let st = { dest: null, date: "", goal: "", saved: "", done: {} };
+  try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) st = Object.assign(st, s); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+  const $ = (id) => document.getElementById(id);
+  const brl = (n) => "R$ " + Math.max(0, Math.round(n)).toLocaleString("pt-BR");
+
+  // vindo do quiz da página de vendas
+  if (!st.dest) {
+    try { const q = JSON.parse(localStorage.getItem("pa_quiz") || "null"); if (q && q.rank && C[q.rank[0]]) { st.dest = q.rank[0]; $("fromQuiz").hidden = false; $("fromQuiz").textContent = "Pelo seu teste, o destino que mais combina com você é " + C[q.rank[0]][0] + ". Pode trocar se quiser."; } } catch (e) {}
+  }
+
+  const flags = $("flags");
+  ORDER.forEach(k => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "fl"; b.dataset.k = k;
+    b.innerHTML = '<img src="../assets/bandeiras/' + C[k][1] + '.png" alt="">' + C[k][0];
+    b.addEventListener("click", () => { st.dest = k; save(); render(); toast("Plano montado para <b>" + C[k][0] + "</b>"); $("phases").scrollIntoView({ behavior: "smooth", block: "start" }); });
+    flags.appendChild(b);
+  });
+  $("fDate").value = st.date; $("fGoal").value = st.goal; $("fSaved").value = st.saved;
+  ["fDate", "fGoal", "fSaved"].forEach(id => $(id).addEventListener("input", () => { st.date = $("fDate").value; st.goal = $("fGoal").value; st.saved = $("fSaved").value; save(); calc(); }));
+
+  function calc() {
+    if (!st.date) { $("calc").hidden = true; return; }
+    const [y, m] = st.date.split("-").map(Number); const now = new Date();
+    const months = Math.max(1, (y - now.getFullYear()) * 12 + (m - 1 - now.getMonth()));
+    const left = Math.max(0, (+st.goal || 0) - (+st.saved || 0));
+    $("cMonths").textContent = months + (months === 1 ? " mês" : " meses");
+    $("cLeft").textContent = brl(left); $("cMonthly").textContent = st.goal ? brl(left / months) : "—";
+    $("calc").hidden = false;
+  }
+
+  function render() {
+    flags.querySelectorAll(".fl").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === st.dest ? "true" : "false"));
+    const ph = $("phases"); ph.innerHTML = "";
+    if (!st.dest) { $("ring").hidden = true; $("level").hidden = true; $("hDest").hidden = true; calc(); return; }
+    const k = st.dest, c = C[k];
+    $("bg").style.backgroundImage = 'url("../assets/fotos/' + c[2] + '.jpg")';
+    $("hTitle").textContent = "Meu plano para " + (k === "portugal" ? "" : k === "eua" ? "os " : ["canada", "chile", "japao", "uruguai", "paraguai"].includes(k) ? "o " : "a ") + c[0];
+    $("hDest").hidden = false; $("hDest").innerHTML = '<img src="../assets/bandeiras/' + c[1] + '.png" alt="">GRU → ' + c[0];
+    $("hSub").textContent = "Marque cada tarefa quando concluir. Seu progresso fica salvo neste celular.";
+    let total = 0, ok = 0;
+    PHASES(k).forEach((p, i) => {
+      const tasks = p[2]; const ids = tasks.map((t, j) => k + ":" + i + ":" + j);
+      const n = ids.filter(id => st.done[id]).length; total += ids.length; ok += n;
+      const d = document.createElement("details"); d.className = "phase" + (n === ids.length ? " done" : "");
+      d.open = n < ids.length && !ph.querySelector("details[open]");
+      d.innerHTML = '<summary><span class="ph-n">' + (n === ids.length ? "✓" : i + 1) + '</span><span class="ph-t"><b>' + p[0] + '</b><span>' + p[1] + '</span></span><span class="ph-c">' + n + "/" + ids.length + '</span></summary>' +
+        '<ul class="tasks">' + tasks.map((t, j) => '<li><label class="task' + (st.done[ids[j]] ? " ok" : "") + '"><input type="checkbox" id="t-' + ids[j].replace(/:/g, "-") + '" data-id="' + ids[j] + '"' + (st.done[ids[j]] ? " checked" : "") + '><span><span class="tt">' + t[0] + '</span><span class="td">' + t[1] + '</span><span class="ch">No guia: ' + t[2] + '</span></span></label></li>').join("") + '</ul>';
+      ph.appendChild(d);
+    });
+    ph.querySelectorAll("input[type=checkbox]").forEach(cb => cb.addEventListener("change", () => {
+      const was = level(pctOf());
+      st.done[cb.dataset.id] = cb.checked; if (!cb.checked) delete st.done[cb.dataset.id]; save();
+      const open = [...ph.querySelectorAll("details")].map(d => d.open);
+      render(); [...ph.querySelectorAll("details")].forEach((d, i) => d.open = open[i]);
+      const now = level(pctOf());
+      if (cb.checked) toast(now !== was ? "Novo nível: <b>" + now + "</b>" : "Boa! Mais uma etapa concluída.");
+    }));
+    const pct = total ? Math.round(ok / total * 100) : 0;
+    $("ring").hidden = false; $("pct").textContent = pct + "%";
+    $("arc").style.strokeDashoffset = 351.86 * (1 - pct / 100);
+    $("level").hidden = false; $("level").textContent = "Nível: " + level(pct);
+    calc();
+  }
+  function pctOf() { let t = 0, o = 0; if (!st.dest) return 0; PHASES(st.dest).forEach((p, i) => p[2].forEach((x, j) => { t++; if (st.done[st.dest + ":" + i + ":" + j]) o++; })); return t ? Math.round(o / t * 100) : 0; }
+  function level(p) { let l = LEVELS[0][1]; LEVELS.forEach(([v, n]) => { if (p >= v) l = n; }); return l; }
+  let tt; function toast(h) { const t = $("toast"); t.innerHTML = h; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 2400); }
+  $("reset").addEventListener("click", () => { st = { dest: null, date: "", goal: "", saved: "", done: {} }; save(); $("fDate").value = ""; $("fGoal").value = ""; $("fSaved").value = ""; render(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+  if (SUPORTE_URL) { $("support").hidden = false; $("support").href = SUPORTE_URL; }
+  render();
+})();
+</script>
+</body>
+</html>
