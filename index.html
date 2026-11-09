@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passaporte Aberto</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Descubra para qual país você tem mais chance de se mudar e receba o guia completo de imigração para brasileiros: 13 países, vistos, documentos, custos e os primeiros 90 dias.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passaporte Aberto: para qual país você tem mais chance de se mudar?">
+<meta property="og:description" content="Faça o teste grátis e receba o guia completo de imigração para brasileiros: 13 países, vistos, documentos e custos.">
+<meta property="og:image" content="https://goncalvesrafaelag-dot.github.io/passaporte-aberto/assets/capa-ebook.jpg">
+<meta name="theme-color" content="#08162d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Barlow+Condensed:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<script>
+  /* Cole aqui o link do checkout (Kiwify, Hotmart, Eduzz...). Enquanto estiver vazio, os botões levam até a oferta. */
+  const CHECKOUT_URL = "";
+</script>
+<style>
+/* Layout: aeroporto à noite. Fotos dos destinos ao fundo, painel de partidas, cartão de embarque.
+   Faixas escuras (noite/painel) alternam com faixas claras (papel) para dar ritmo à leitura. */
+:root {
+  color-scheme: light;
+  --night: #08162d;
+  --night-2: #0f2445;
+  --panel: #0b1c38;
+  --signal: #ffd21f;
+  --go: #00b26b;
+  --go-dark: #00915a;
+  --stamp: #e0363f;
+  --paper: #f2f4f7;
+  --card: #ffffff;
+  --ink: #0d1626;
+  --muted: #56667d;
+  --line: #d8dee7;
+  --on-night: #eaf0f8;
+  --on-night-muted: #9fb0c8;
+  --night-line: rgba(255, 255, 255, 0.12);
+  --f-display: "Archivo", "Arial Black", "Segoe UI", sans-serif;
+  --f-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --f-board: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --r: 18px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+.wrap { width: 100%; max-width: 1140px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.band { padding-block: clamp(56px, 9vw, 112px); }
+.night { background: var(--night); color: var(--on-night); }
+h1, h2, h3 { font-family: var(--f-display); font-stretch: 112%; line-height: 1.05; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); font-weight: 800; }
+h3 { font-size: 1.2rem; font-weight: 750; font-stretch: 100%; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-board); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.95rem; color: var(--go-dark); }
+.night .eyebrow { color: var(--signal); }
+.lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); max-width: 60ch; }
+.night .lede { color: var(--on-night-muted); }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- botões ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--f-display); font-stretch: 105%; font-weight: 800; font-size: 1.08rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.02em; border: 0; cursor: pointer; border-radius: 999px; padding: 18px 30px; background: var(--go); color: #fff; box-shadow: 0 10px 24px -10px rgba(0, 178, 107, 0.8), inset 0 -3px 0 rgba(0, 0, 0, 0.18); transition: transform .18s ease, background .18s ease; }
+.btn:hover { transform: translateY(-2px); background: #00c476; }
+.btn:active { transform: translateY(0); }
+.btn.big { font-size: 1.2rem; padding: 22px 36px; width: 100%; max-width: 460px; }
+.btn.ghost { background: transparent; color: var(--on-night); box-shadow: inset 0 0 0 2px var(--night-line); }
+.btn.ghost:hover { background: rgba(255, 255, 255, 0.06); }
+.btn .arrow { transition: transform .2s; }
+.btn:hover .arrow { transform: translateX(4px); }
+.pulse { animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 10px 24px -10px rgba(0, 178, 107, .8), 0 0 0 0 rgba(0, 178, 107, .45); } 50% { box-shadow: 0 10px 24px -10px rgba(0, 178, 107, .8), 0 0 0 14px rgba(0, 178, 107, 0); } }
+
+/* ---------- topo ---------- */
+.topbar { position: absolute; inset: 0 0 auto; z-index: 5; padding-top: env(safe-area-inset-top, 0px); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 900; font-stretch: 118%; letter-spacing: 0.02em; color: #fff; text-decoration: none; font-size: 1.05rem; }
+.logo .mark { width: 30px; height: 30px; border-radius: 8px; background: var(--signal); display: grid; place-items: center; }
+.logo .mark svg { width: 18px; height: 18px; }
+.logo b { color: var(--signal); font-weight: 900; }
+.top-note { font-family: var(--f-board); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--on-night-muted); font-size: .9rem; }
+
+/* ---------- herói + quiz ---------- */
+.hero { position: relative; background: var(--night); color: var(--on-night); overflow: hidden; isolation: isolate; }
+.slides { position: absolute; inset: 0; z-index: -2; }
+.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.6s ease, transform 7s linear; }
+.slides img.on { opacity: 1; transform: scale(1.0); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8, 22, 45, .45) 0%, rgba(8, 22, 45, .25) 30%, rgba(8, 22, 45, .55) 70%, rgba(8, 22, 45, .96) 100%), linear-gradient(90deg, rgba(8, 22, 45, .7) 0%, rgba(8, 22, 45, .2) 60%); }
+.hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-top: calc(96px + env(safe-area-inset-top, 0px)); padding-bottom: clamp(48px, 7vw, 88px); }
+.hero-copy { min-width: 0; display: grid; gap: 22px; }
+.hero h1 { font-size: clamp(2.3rem, 5.6vw, 4.3rem); font-weight: 900; font-stretch: 116%; text-shadow: 0 4px 30px rgba(0, 0, 0, .45); }
+.hero h1 em { font-style: normal; color: var(--signal); }
+.now { display: inline-flex; align-items: center; gap: 12px; font-family: var(--f-board); text-transform: uppercase; letter-spacing: .12em; font-weight: 600; font-size: .95rem; color: var(--on-night-muted); }
+.now .city { color: var(--signal); background: rgba(0, 0, 0, .35); border: 1px solid var(--night-line); padding: 4px 10px; border-radius: 6px; min-width: 15ch; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--go); box-shadow: 0 0 0 0 rgba(0, 178, 107, .6); animation: blink 1.6s infinite; }
+@keyframes blink { 50% { box-shadow: 0 0 0 7px rgba(0, 178, 107, 0); } }
+.hero-facts { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--on-night-muted); font-size: .98rem; }
+.hero-facts span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-facts svg { width: 18px; height: 18px; color: var(--go); flex: none; }
+
+.quiz { position: relative; background: var(--card); color: var(--ink); border-radius: 24px; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .7); overflow: hidden; min-width: 0; }
+.quiz-head { background: var(--night-2); color: var(--on-night); padding: 16px 22px; display: grid; gap: 10px; }
+.route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; font-family: var(--f-board); font-weight: 700; letter-spacing: .08em; font-size: 1.15rem; }
+.route .track { position: relative; height: 2px; background: repeating-linear-gradient(90deg, var(--on-night-muted) 0 8px, transparent 8px 14px); }
+.route .plane { position: absolute; top: 50%; left: 0%; width: 26px; height: 26px; color: var(--signal); transform: translate(-50%, -50%) rotate(90deg); transition: left .6s cubic-bezier(.3, 1.3, .5, 1); }
+.route .to { color: var(--signal); min-width: 3.2ch; text-align: right; }
+.qcount { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; color: var(--on-night-muted); display: flex; justify-content: space-between; }
+.quiz-body { padding: clamp(20px, 3vw, 30px); min-height: 430px; display: grid; }
+.step { display: grid; gap: 18px; align-content: start; animation: stepIn .45s cubic-bezier(.2, .9, .3, 1); }
+@keyframes stepIn { from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: none; } }
+.step h2 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); font-stretch: 105%; }
+.step .help { color: var(--muted); font-size: .98rem; }
+.opts { display: grid; gap: 10px; }
+.opt { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 12px; width: 100%; text-align: left; background: var(--paper); border: 2px solid transparent; border-radius: 14px; padding: 13px 14px; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+.opt:hover { border-color: var(--go); background: #e9f8f1; transform: translateX(3px); }
+.opt.picked { border-color: var(--go); background: #dff5eb; }
+.opt .key { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); font-family: var(--f-board); font-weight: 700; color: var(--muted); }
+.opt small { display: block; font-weight: 500; color: var(--muted); font-size: .86rem; }
+.qnav { display: flex; justify-content: space-between; align-items: center; }
+.link { background: none; border: 0; padding: 6px 0; font: inherit; color: var(--muted); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.intro-list { display: grid; gap: 10px; color: var(--muted); }
+.intro-list li { display: flex; gap: 10px; align-items: flex-start; }
+.intro-list svg { width: 20px; height: 20px; color: var(--go); flex: none; margin-top: 3px; }
+ul.clean { list-style: none; margin: 0; padding: 0; }
+
+/* carregando: painel que vira */
+.flapboard { display: grid; gap: 16px; place-content: center; text-align: center; }
+.flaps { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
+.flaps span { width: 1.45em; height: 1.9em; display: grid; place-items: center; background: var(--night); color: var(--signal); font-family: var(--f-board); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.9rem); border-radius: 5px; position: relative; }
+.flaps span::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .6); }
+
+/* cartão de embarque */
+.pass { display: grid; gap: 16px; animation: stepIn .5s ease; }
+.ticket { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--card); }
+.ticket-top { background: var(--night); color: var(--on-night); display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; font-family: var(--f-board); text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; font-weight: 600; }
+.ticket-top b { color: var(--signal); font-weight: 700; }
+.ticket-main { display: grid; grid-template-columns: 1fr auto; }
+.ticket-left { padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.ticket-stub { width: 128px; border-left: 2px dashed var(--line); padding: 16px 14px; display: grid; gap: 8px; align-content: start; position: relative; }
+.ticket-stub::before, .ticket-stub::after { content: ""; position: absolute; left: -11px; width: 20px; height: 20px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); }
+.ticket-stub::before { top: -11px; } .ticket-stub::after { bottom: -11px; }
+.lbl { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--muted); font-weight: 600; }
+.val { font-weight: 700; line-height: 1.25; }
+.dest { display: flex; align-items: center; gap: 12px; }
+.dest img { width: 54px; border-radius: 6px; box-shadow: 0 0 0 1px var(--line); }
+.dest .name { font-family: var(--f-display); font-weight: 900; font-stretch: 118%; font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1; text-transform: uppercase; }
+.fromto { display: flex; align-items: center; gap: 10px; font-family: var(--f-board); font-weight: 700; font-size: 1.3rem; letter-spacing: .06em; }
+.fromto svg { width: 22px; height: 22px; color: var(--go); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.barcode { height: 46px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 7px, transparent 7px 9px, var(--ink) 9px 10px, transparent 10px 13px); border-radius: 2px; }
+.stub-dest img { width: 46px; border-radius: 5px; box-shadow: 0 0 0 1px var(--line); }
+.stub-dest .n2 { font-family: var(--f-display); font-weight: 850; text-transform: uppercase; font-size: 1.05rem; line-height: 1.1; }
+.why { display: grid; gap: 8px; }
+.why li { display: flex; gap: 10px; align-items: flex-start; font-size: .98rem; }
+.why svg { width: 20px; height: 20px; color: var(--go); flex: none; margin-top: 2px; }
+.fine { font-size: .82rem; color: var(--muted); }
+.night .fine { color: var(--on-night-muted); }
+
+/* ---------- VSL ---------- */
+.vsl-grid { display: grid; grid-template-columns: 1fr minmax(0, 400px); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.vsl-copy { display: grid; gap: 22px; min-width: 0; }
+.vsl-copy .dest-tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 210, 31, .12); color: var(--signal); border: 1px solid rgba(255, 210, 31, .35); padding: 6px 12px; border-radius: 999px; font-weight: 700; font-family: var(--f-board); letter-spacing: .08em; text-transform: uppercase; width: max-content; max-width: 100%; }
+.vsl-copy .dest-tag img { width: 26px; border-radius: 3px; }
+.player { position: relative; border-radius: 28px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; width: 100%; max-width: 400px; justify-self: center; box-shadow: 0 0 0 10px #111a2c, 0 40px 80px -30px rgba(0, 0, 0, .8); }
+.player video { width: 100%; height: 100%; object-fit: cover; }
+.play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; background: linear-gradient(180deg, rgba(8, 22, 45, .1), rgba(8, 22, 45, .65)); border: 0; cursor: pointer; color: #fff; font: inherit; }
+.play .circle { width: 92px; height: 92px; border-radius: 50%; background: var(--signal); display: grid; place-items: center; box-shadow: 0 0 0 0 rgba(255, 210, 31, .6); animation: ring 2s infinite; }
+.play .circle svg { width: 38px; height: 38px; color: var(--night); margin-left: 6px; }
+@keyframes ring { 70% { box-shadow: 0 0 0 22px rgba(255, 210, 31, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 210, 31, 0); } }
+.play .ptxt { font-family: var(--f-display); font-weight: 800; font-stretch: 110%; font-size: 1.15rem; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.play .psub { font-size: .92rem; opacity: .9; }
+.checks { display: grid; gap: 10px; }
+.checks li { display: flex; gap: 12px; align-items: flex-start; }
+.checks svg { width: 22px; height: 22px; flex: none; color: var(--go); margin-top: 2px; }
+
+/* ---------- por dentro ---------- */
+.inside-grid { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; margin-top: 48px; }
+.phone { position: relative; width: 100%; max-width: 320px; aspect-ratio: 9 / 18.5; border-radius: 44px; background: #0d1219; padding: 12px; box-shadow: 0 0 0 2px #2a3446, 0 50px 90px -40px rgba(13, 22, 38, .7); justify-self: center; transform: rotate(-3deg); }
+.phone .screen { position: relative; width: 100%; height: 100%; border-radius: 34px; overflow: hidden; background: #d6dbe4; }
+.phone .notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 22px; border-radius: 0 0 14px 14px; background: #0d1219; z-index: 2; }
+.phone .feed { width: 100%; animation: scrollbook 34s cubic-bezier(.6, 0, .35, 1) infinite; will-change: transform; }
+.phone .feed img { width: 100%; }
+@keyframes scrollbook {
+  0%, 6% { transform: translateY(0); }
+  14%, 22% { transform: translateY(-9.6%); }
+  30%, 38% { transform: translateY(-19.6%); }
+  46%, 54% { transform: translateY(-39.6%); }
+  62%, 70% { transform: translateY(-59.4%); }
+  78%, 86% { transform: translateY(-69.3%); }
+  94%, 100% { transform: translateY(0); }
+}
+.phone .tap { position: absolute; width: 46px; height: 46px; border-radius: 50%; background: rgba(255, 255, 255, .8); box-shadow: 0 0 0 0 rgba(0, 120, 255, .45); left: 38%; top: 46%; opacity: 0; animation: tap 34s infinite; z-index: 3; }
+@keyframes tap { 0%, 9% { opacity: 0; } 10% { opacity: 1; transform: scale(.8); box-shadow: 0 0 0 0 rgba(0, 120, 255, .5); } 13% { opacity: 0; transform: scale(1.2); box-shadow: 0 0 0 24px rgba(0, 120, 255, 0); } 41% { opacity: 0; } 42% { opacity: 1; transform: scale(.8); } 45% { opacity: 0; transform: scale(1.2); box-shadow: 0 0 0 24px rgba(0, 120, 255, 0); } 100% { opacity: 0; } }
+.chapters { display: grid; gap: 14px; counter-reset: none; }
+.chapter { display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: start; padding: 16px 18px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); }
+.chapter .tag { font-family: var(--f-board); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; color: var(--go-dark); line-height: 1.15; padding-top: 2px; }
+.chapter p { color: var(--muted); font-size: .98rem; margin-top: 4px; }
+.chapter.hl { background: var(--night); border-color: var(--night); color: var(--on-night); }
+.chapter.hl .tag { color: var(--signal); }
+.chapter.hl p { color: var(--on-night-muted); }
+
+/* ---------- painel de partidas ---------- */
+.board { margin-top: 40px; background: var(--panel); border-radius: 20px; padding: 10px; box-shadow: inset 0 0 0 1px var(--night-line), 0 30px 60px -30px rgba(0, 0, 0, .8); }
+.board-head, .board-row { display: grid; grid-template-columns: 1.15fr 1.8fr .8fr 1fr; gap: 14px; align-items: center; padding: 12px 16px; }
+.board-head { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .16em; font-size: .82rem; color: var(--on-night-muted); font-weight: 600; border-bottom: 1px solid var(--night-line); }
+.board-row { border-bottom: 1px solid var(--night-line); font-family: var(--f-board); font-weight: 600; font-size: 1.12rem; letter-spacing: .04em; text-transform: uppercase; color: var(--on-night); }
+.board-row:last-child { border-bottom: 0; }
+.board-row .c-dest { display: flex; align-items: center; gap: 12px; color: var(--signal); font-weight: 700; font-size: 1.3rem; min-width: 0; }
+.board-row .c-dest img { width: 34px; border-radius: 4px; flex: none; }
+.board-row .c-city { display: block; font-size: .85rem; color: var(--on-night-muted); letter-spacing: .1em; }
+.cost { display: inline-block; padding: 2px 10px; border-radius: 6px; font-size: .95rem; background: rgba(255, 255, 255, .07); }
+.cost.low { color: #59e3a6; } .cost.mid { color: var(--signal); } .cost.high { color: #ff8a7a; }
+.board-row .mlabel { display: none; }
+.board-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 16px; color: var(--on-night-muted); font-size: .92rem; }
+
+/* ---------- destinos (fotos) ---------- */
+.marquee { margin-top: 44px; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.mtrack { display: flex; gap: 16px; width: max-content; animation: marquee 60s linear infinite; }
+.marquee:hover .mtrack { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.pcard { position: relative; width: 250px; aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; flex: none; background: var(--night-2); }
+.pcard img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.pcard:hover img { transform: scale(1.06); }
+.pcard figcaption { position: absolute; inset: auto 0 0; padding: 40px 16px 14px; background: linear-gradient(180deg, transparent, rgba(8, 22, 45, .92)); color: #fff; display: flex; align-items: center; gap: 10px; }
+.pcard figcaption img { width: 28px; height: auto; border-radius: 3px; }
+.pcard figcaption b { font-family: var(--f-display); font-stretch: 110%; font-weight: 850; text-transform: uppercase; display: block; line-height: 1.1; }
+.pcard figcaption span { font-size: .85rem; color: var(--on-night-muted); }
+
+/* ---------- para quem ---------- */
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+.who-card { border-radius: 22px; padding: clamp(22px, 3vw, 32px); display: grid; gap: 16px; align-content: start; min-width: 0; }
+.who-card.yes { background: var(--card); border: 1px solid var(--line); }
+.who-card.no { background: #e8ebf0; }
+.who-card li { display: flex; gap: 12px; align-items: flex-start; }
+.who-card svg { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+.who-card.yes svg { color: var(--go); } .who-card.no svg { color: var(--stamp); }
+.who-card ul { display: grid; gap: 12px; }
+
+/* ---------- oferta ---------- */
+.offer { position: relative; overflow: hidden; isolation: isolate; }
+.offer-bg { position: absolute; inset: 0; z-index: -1; background: url("assets/fotos/aviao.jpg") center / cover; opacity: .22; }
+.offer-card { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; background: rgba(11, 28, 56, .85); backdrop-filter: blur(6px); border: 1px solid var(--night-line); border-radius: 28px; padding: clamp(24px, 4vw, 48px); margin-top: 40px; }
+.book3d { perspective: 1200px; justify-self: center; width: 100%; max-width: 300px; }
+.book3d img { width: 100%; border-radius: 4px 10px 10px 4px; transform: rotateY(-22deg) rotateX(4deg); box-shadow: 28px 30px 50px -18px rgba(0, 0, 0, .75); transition: transform .6s ease; }
+.book3d:hover img { transform: rotateY(-6deg) rotateX(2deg); }
+.offer-main { display: grid; gap: 22px; min-width: 0; }
+.stack li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--night-line); }
+.stack li span:first-child { display: flex; gap: 10px; align-items: flex-start; }
+.stack svg { width: 20px; height: 20px; color: var(--go); flex: none; margin-top: 3px; }
+.stack .inc { font-family: var(--f-board); text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; color: var(--on-night-muted); white-space: nowrap; }
+.price { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.price .cur { font-family: var(--f-board); font-weight: 700; font-size: 2rem; color: var(--signal); }
+.price .num { font-family: var(--f-display); font-weight: 900; font-stretch: 118%; font-size: clamp(4.2rem, 10vw, 6.2rem); line-height: .9; color: var(--signal); }
+.price .how { color: var(--on-night-muted); font-size: .98rem; max-width: 22ch; }
+.bumps { display: grid; gap: 10px; background: rgba(255, 255, 255, .05); border-radius: 16px; padding: 16px; font-size: .95rem; color: var(--on-night-muted); }
+.bumps b { color: var(--on-night); }
+.buy-note { font-size: .9rem; color: var(--signal); min-height: 1.2em; }
+.seal { display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: center; margin-top: 28px; }
+.seal .s { width: 92px; height: 92px; border-radius: 50%; background: var(--go); color: #fff; display: grid; place-content: center; text-align: center; font-family: var(--f-board); font-weight: 700; text-transform: uppercase; line-height: 1; box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .25); }
+.seal .s b { font-size: 2.2rem; display: block; }
+.seal p { color: var(--on-night-muted); }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 820px; margin-top: 36px; display: grid; gap: 12px; }
+.faq details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 20px; }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px 0; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-board); font-size: 1.6rem; color: var(--go-dark); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: 18px; color: var(--muted); }
+
+/* ---------- rodapé e barra fixa ---------- */
+footer { background: var(--night); color: var(--on-night-muted); font-size: .9rem; padding-block: 40px calc(110px + env(safe-area-inset-bottom, 0px)); }
+footer .wrap { display: grid; gap: 14px; }
+footer .logo { font-size: .95rem; }
+.sticky { position: fixed; inset: auto 0 0; z-index: 20; background: rgba(8, 22, 45, .96); backdrop-filter: blur(8px); border-top: 1px solid var(--night-line); color: var(--on-night); transform: translateY(110%); transition: transform .35s ease; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.sticky.show { transform: none; }
+.sticky .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 12px; }
+.sticky .sinfo { display: grid; line-height: 1.2; min-width: 0; }
+.sticky .sinfo b { font-family: var(--f-display); font-stretch: 110%; font-weight: 850; text-transform: uppercase; font-size: .98rem; }
+.sticky .sinfo span { color: var(--on-night-muted); font-size: .88rem; }
+.sticky .btn { padding: 14px 22px; font-size: .98rem; white-space: nowrap; }
+
+.center { text-align: center; justify-items: center; }
+.head { display: grid; gap: 14px; }
+.head.center .lede { margin: 0 auto; }
+
+/* ---------- responsivo ---------- */
+@media (max-width: 920px) {
+  .hero-inner, .vsl-grid, .inside-grid, .offer-card { grid-template-columns: 1fr; }
+  .hero-copy { text-align: left; }
+  .vsl-copy { order: 2; }
+  .board-head { display: none; }
+  .board-row { grid-template-columns: 1fr 1fr; gap: 6px 14px; padding: 14px 12px; }
+  .board-row .c-dest { grid-column: 1 / -1; }
+  .board-row .c-door { grid-column: 1 / -1; font-size: 1rem; }
+  .board-row .mlabel { display: block; font-size: .72rem; color: var(--on-night-muted); letter-spacing: .14em; }
+  .who { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .top-note { display: none; }
+  .now { font-size: .78rem; gap: 8px; flex-wrap: wrap; }
+  .now .city { min-width: 0; }
+  .hero .lede { color: #c9d5e6; text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
+  .ticket-main { grid-template-columns: 1fr; }
+  .ticket-stub { width: auto; border-left: 0; border-top: 2px dashed var(--line); grid-template-columns: auto 1fr; align-items: center; }
+  .ticket-stub::before, .ticket-stub::after { display: none; }
+  .ticket-stub .barcode { display: none; }
+  .grid2 { grid-template-columns: 1fr 1fr; }
+  .chapter { grid-template-columns: 1fr; gap: 4px; }
+  .pcard { width: 200px; }
+  .sticky .sinfo span { display: none; }
+  .btn.big { font-size: 1.02rem; padding: 20px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .marquee { overflow-x: auto; }
+}
+</style>
+
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18h3"/></g></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="Passaporte Aberto, início">
+      <span class="mark"><svg><use href="#i-plane" style="color:#08162d"/></svg></span>
+      PASSAPORTE <b>ABERTO</b>
+    </a>
+    <span class="top-note">Guia de imigração para brasileiros · edição nov/2026</span>
+  </div>
+</header>
+
+<main id="topo">
+<!-- ===================== HERÓI + QUIZ ===================== -->
+<section class="hero" aria-label="Teste: para qual país você tem mais chance de se mudar">
+  <div class="slides" id="slides" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="now"><span class="dot"></span>Partindo agora para <span class="city" id="nowCity">TORONTO · CANADÁ</span></span>
+      <h1>Para qual país <em>você</em> tem mais chance de se mudar?</h1>
+      <p class="lede">Responda 6 perguntas rápidas e receba seu cartão de embarque com os 2 destinos que mais combinam com o seu perfil, entre 13 países, incluindo a América Latina.</p>
+      <div class="hero-facts">
+        <span><svg><use href="#i-clock"/></svg>Leva menos de 1 minuto</span>
+        <span><svg><use href="#i-lock"/></svg>Sem cadastro e sem e-mail</span>
+        <span><svg><use href="#i-check"/></svg>Resultado na hora</span>
+      </div>
+    </div>
+
+    <div class="quiz" id="quiz">
+      <div class="quiz-head">
+        <div class="route" aria-hidden="true">
+          <span>GRU</span>
+          <div class="track"><svg class="plane" id="plane"><use href="#i-plane"/></svg></div>
+          <span class="to" id="routeTo">???</span>
+        </div>
+        <div class="qcount"><span id="qLabel">Seu teste de destino</span><span id="qNum">6 perguntas</span></div>
+      </div>
+      <div class="quiz-body" id="quizBody" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VSL ===================== -->
+<section class="band night" id="vsl">
+  <div class="wrap vsl-grid">
+    <div class="vsl-copy">
+      <span class="dest-tag" id="destTag" hidden></span>
+      <span class="eyebrow">Assista antes de decidir · 1 minuto</span>
+      <h2 id="vslTitle">O brasileiro que mora 2 anos na Espanha pode pedir a cidadania espanhola. Quase ninguém conta isso.</h2>
+      <p class="lede">O Passaporte Aberto junta em um guia só o que hoje está espalhado em grupos, vídeos antigos e anúncios de "visto garantido": qual porta de entrada serve para você, quanto custa e o passo a passo para sair do Brasil do jeito certo.</p>
+      <ul class="clean checks">
+        <li><svg><use href="#i-check"/></svg><span><b>13 países</b> comparados, com o ranking dos melhores para brasileiros</span></li>
+        <li><svg><use href="#i-check"/></svg><span>O atalho do <b>Mercosul</b>: Uruguai, Argentina, Chile e Paraguai só com a ficha limpa</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Documentos, orçamento e os <b>primeiros 90 dias</b> no novo país</span></li>
+      </ul>
+      <div><a class="btn big pulse js-buy" href="#oferta">Quero o guia por R$ 20 <span class="arrow">→</span></a></div>
+    </div>
+    <div class="player" id="player">
+      <video id="vslVideo" src="assets/vsl.mp4" poster="assets/vsl-capa.jpg" playsinline preload="metadata"></video>
+      <button class="play" id="playBtn" type="button" aria-label="Assistir ao vídeo com som">
+        <span class="circle"><svg><use href="#i-play"/></svg></span>
+        <span class="ptxt">Toque para assistir</span>
+        <span class="psub">com som · 1 minuto</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POR DENTRO ===================== -->
+<section class="band" id="dentro">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">O que você recebe</span>
+      <h2>Um guia de 28 páginas que você lê no celular, em ordem, sem enrolação</h2>
+      <p class="lede">Cada capítulo responde uma dúvida real de quem quer sair do Brasil. Você não precisa ler tudo: o próprio guia mostra o que ler primeiro.</p>
+    </div>
+    <div class="inside-grid">
+      <div class="phone" aria-label="Prévia das páginas do guia no celular">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="feed"><img src="assets/ebook-paginas.jpg" alt="Páginas reais do guia: comece aqui, ranking de países, Uruguai, Argentina, orçamento, primeiros 90 dias e checklists" width="330" height="5472" loading="lazy"></div>
+          <span class="tap"></span>
+        </div>
+      </div>
+      <ul class="clean chapters">
+        <li class="chapter hl"><span class="tag">Comece aqui</span><div><h3>Descubra sua porta de entrada em 1 minuto</h3><p>Um fluxograma com 4 perguntas que aponta qual caminho legal serve para você: cidadania, trabalho, renda, estudo ou Mercosul.</p></div></li>
+        <li class="chapter"><span class="tag">Ranking</span><div><h3>Os melhores países para brasileiros em 2026</h3><p>Duas listas, América Latina e resto do mundo, com o motivo de cada posição e o ponto de atenção.</p></div></li>
+        <li class="chapter"><span class="tag">13 países</span><div><h3>Um capítulo por país, com resumo de 30 segundos</h3><p>Portugal, Espanha, Itália, Irlanda, Canadá, EUA, Alemanha, Austrália, Japão, Uruguai, Argentina, Chile e Paraguai: vistos que funcionam hoje, custo e tempo até a cidadania.</p></div></li>
+        <li class="chapter"><span class="tag">Passos 2 e 3</span><div><h3>Documentos, apostila e tradução na ordem certa</h3><p>O que tirar no Brasil antes de sair e o erro que mais atrasa processos.</p></div></li>
+        <li class="chapter"><span class="tag">Passos 4 e 5</span><div><h3>Orçamento e os primeiros 90 dias</h3><p>Quanto guardar, a reserva de 6 meses e o que fazer na primeira semana, no primeiro mês e no terceiro.</p></div></li>
+        <li class="chapter"><span class="tag">Proteção</span><div><h3>Golpes comuns e checklists para imprimir</h3><p>Como reconhecer "visto garantido", falsas assessorias e as listas de 12, 6 e 3 meses antes da viagem.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAINEL DE PARTIDAS ===================== -->
+<section class="band night" id="partidas">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Partidas de GRU · São Paulo</span>
+      <h2>Os 13 destinos do guia</h2>
+      <p class="lede">A porta de entrada mais usada por brasileiros em cada país, o custo para entrar e o tempo de residência até a cidadania. Os detalhes de cada um estão no guia.</p>
+    </div>
+    <div class="board" id="board" role="table" aria-label="Destinos do guia">
+      <div class="board-head" role="row"><span role="columnheader">Destino</span><span role="columnheader">Porta de entrada</span><span role="columnheader">Custo</span><span role="columnheader">Cidadania</span></div>
+    </div>
+    <div class="board-legend"><span>Custo para entrar: <b style="color:#59e3a6">baixo</b> · <b style="color:var(--signal)">médio</b> · <b style="color:#ff8a7a">alto</b></span><span>Regras de novembro de 2026. Confirme sempre no site oficial do país.</span></div>
+    <div class="marquee" aria-label="Fotos dos destinos"><div class="mtrack" id="mtrack"></div></div>
+  </div>
+</section>
+
+<!-- ===================== PARA QUEM ===================== -->
+<section class="band" id="para-quem">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Para quem é</span>
+      <h2>Feito para quem ama o Brasil, mas cansou de morar aqui</h2>
+    </div>
+    <div class="who">
+      <div class="who-card yes">
+        <h3>É para você se</h3>
+        <ul class="clean">
+          <li><svg><use href="#i-check"/></svg>Quer sair do Brasil de forma legal, sozinho ou com a família</li>
+          <li><svg><use href="#i-check"/></svg>Está começando do zero e não sabe por qual país começar</li>
+          <li><svg><use href="#i-check"/></svg>Quer comparar custos e caminhos antes de gastar com assessoria</li>
+          <li><svg><use href="#i-check"/></svg>Não fala inglês e quer saber onde isso não é obstáculo</li>
+          <li><svg><use href="#i-check"/></svg>Tem medo de cair em golpe de "visto garantido"</li>
+        </ul>
+      </div>
+      <div class="who-card no">
+        <h3>Não é para você se</h3>
+        <ul class="clean">
+          <li><svg><use href="#i-x"/></svg>Procura alguém que garanta o seu visto: ninguém pode garantir</li>
+          <li><svg><use href="#i-x"/></svg>Quer entrar como turista e ficar ilegal</li>
+          <li><svg><use href="#i-x"/></svg>Precisa de um advogado para um caso específico</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OFERTA ===================== -->
+<section class="band night offer" id="oferta">
+  <div class="offer-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Seu embarque começa aqui</span>
+      <h2>Passaporte Aberto: guia completo de imigração para brasileiros</h2>
+    </div>
+    <div class="offer-card">
+      <div class="book3d"><img src="assets/capa-ebook.jpg" alt="Capa do guia Passaporte Aberto" width="920" height="1380"></div>
+      <div class="offer-main">
+        <ul class="clean stack">
+          <li><span><svg><use href="#i-check"/></svg>Guia completo em PDF, 28 páginas com capa</span><span class="inc">incluso</span></li>
+          <li><span><svg><use href="#i-check"/></svg>Teste "Comece aqui" e ranking de países</span><span class="inc">incluso</span></li>
+          <li><span><svg><use href="#i-check"/></svg>13 países com passo a passo, custo e cidadania</span><span class="inc">incluso</span></li>
+          <li><span><svg><use href="#i-check"/></svg>Documentos, orçamento e primeiros 90 dias</span><span class="inc">incluso</span></li>
+          <li><span><svg><use href="#i-check"/></svg>Golpes comuns, checklists e fontes oficiais</span><span class="inc">incluso</span></li>
+        </ul>
+        <div class="price">
+          <span class="cur">R$</span><span class="num">20</span>
+          <span class="how">pagamento único · Pix ou cartão · acesso imediato no e-mail</span>
+        </div>
+        <div><a class="btn big pulse js-buy" id="buyMain" href="#oferta">Quero meu guia agora <span class="arrow">→</span></a></div>
+        <p class="buy-note" id="buyNote" aria-live="polite"></p>
+        <div class="bumps">
+          <span>No pagamento você também pode adicionar:</span>
+          <span><b>Planilha de orçamento da mudança</b> · calcula quanto guardar por mês · R$ 17</span>
+          <span><b>Kit de currículos internacionais</b> · modelos para Portugal, Espanha, Alemanha, Canadá e Japão · R$ 19</span>
+        </div>
+      </div>
+    </div>
+    <div class="seal">
+      <span class="s"><b>7</b>dias</span>
+      <p><b style="color:var(--on-night)">Garantia de 7 dias.</b> Leia o guia inteiro. Se achar que não valeu os R$ 20, peça o reembolso dentro de 7 dias e receba todo o valor de volta, como manda o Código de Defesa do Consumidor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="band" id="duvidas">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>Antes de comprar</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Isso é uma consultoria? Vocês tiram o meu visto?</summary><p>Não. O Passaporte Aberto é um guia informativo. Ele mostra os caminhos legais, os documentos e os custos para você fazer o processo por conta própria ou chegar muito mais preparado a um advogado ou consulado. Ninguém pode garantir um visto: quem decide é o governo de cada país.</p></details>
+      <details><summary>Funciona para quem não fala inglês?</summary><p>Sim. O guia mostra onde o idioma não é obstáculo: Portugal fala português, e Uruguai, Argentina, Chile e Paraguai falam espanhol, que o brasileiro costuma entender rápido.</p></details>
+      <details><summary>Como eu recebo o guia?</summary><p>Logo depois do pagamento você recebe o acesso no e-mail. É um PDF que abre no celular, no computador ou no tablet, e pode ser impresso.</p></details>
+      <details><summary>As regras de imigração mudam. O guia está atualizado?</summary><p>Esta edição é de novembro de 2026 e já traz as mudanças recentes, como a nova lei de estrangeiros de Portugal, a regra da cidadania italiana de 2025 e o decreto de imigração da Argentina. Cada capítulo tem o link do site oficial para você confirmar antes de dar entrada.</p></details>
+      <details><summary>Serve para quem quer ir com a família?</summary><p>Sim. O guia mostra quais vistos permitem levar cônjuge e filhos, e o orçamento já considera a mudança da família inteira.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso e recebe todo o valor de volta.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#topo"><span class="mark"><svg><use href="#i-plane" style="color:#08162d"/></svg></span>PASSAPORTE <b>ABERTO</b></a>
+    <p>O Passaporte Aberto é um guia informativo e não substitui a orientação de um advogado. Regras de imigração mudam com frequência: confirme sempre no site oficial do país antes de dar entrada em qualquer processo. Resultados variam de pessoa para pessoa e nenhum visto é garantido.</p>
+    <p>Fotos dos destinos: Unsplash. Bandeiras: flagcdn.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="wrap">
+    <div class="sinfo"><b>Passaporte Aberto · R$ 20</b><span>13 países · acesso imediato · garantia de 7 dias</span></div>
+    <a class="btn js-buy" href="#oferta" tabindex="-1">Quero o guia</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ---------------- dados dos países (iguais ao guia) ---------------- */
+  const C = {
+    portugal: { nome: "Portugal", cidade: "Lisboa", flag: "pt", porta: "Trabalho (D1), renda (D7) ou nômade digital (D8)", custo: "Baixo", c: "low", cid: "7 anos", idioma: "Português", pitch: "Mesmo idioma e a maior comunidade brasileira da Europa." },
+    espanha: { nome: "Espanha", cidade: "Madri", flag: "es", porta: "Estudo ou nômade digital", custo: "Médio", c: "mid", cid: "2 anos", idioma: "Espanhol", pitch: "O brasileiro pode pedir a cidadania com só 2 anos de residência." },
+    italia: { nome: "Itália", cidade: "Roma", flag: "it", porta: "Cidadania por descendência (filhos e netos)", custo: "Baixo a médio", c: "mid", cid: "Por sangue", idioma: "Italiano", pitch: "Para filhos e netos de italianos, a cidadania vem pelo sangue." },
+    irlanda: { nome: "Irlanda", cidade: "Dublin", flag: "ie", porta: "Estudo de inglês com permissão de trabalho", custo: "Médio", c: "mid", cid: "5 anos", idioma: "Inglês", pitch: "Você estuda inglês, trabalha meio período e ganha em euro." },
+    canada: { nome: "Canadá", cidade: "Toronto", flag: "ca", porta: "Express Entry (pontos)", custo: "Alto", c: "high", cid: "3 anos como residente", idioma: "Inglês e francês", pitch: "Imigração organizada por pontos e salários altos." },
+    eua: { nome: "Estados Unidos", cidade: "Nova York", flag: "us", porta: "Estudo (F-1) ou EB-2 NIW", custo: "Muito alto", c: "high", cid: "5 anos após o green card", idioma: "Inglês", pitch: "A maior economia do mundo, para quem tem perfil e reserva." },
+    alemanha: { nome: "Alemanha", cidade: "Berlim", flag: "de", porta: "Chancenkarte ou Blue Card", custo: "Médio", c: "mid", cid: "5 anos", idioma: "Alemão", pitch: "Falta mão de obra qualificada e existe um visto só para procurar emprego." },
+    australia: { nome: "Austrália", cidade: "Sydney", flag: "au", porta: "Estudo com permissão de trabalho", custo: "Alto", c: "high", cid: "4 anos", idioma: "Inglês", pitch: "Salários altos e qualidade de vida, para quem pode investir na entrada." },
+    japao: { nome: "Japão", cidade: "Tóquio", flag: "jp", porta: "Visto de descendente (nikkei)", custo: "Médio", c: "mid", cid: "5 anos", idioma: "Japonês", pitch: "Para descendentes de japoneses, o visto de trabalho é o mais simples." },
+    uruguai: { nome: "Uruguai", cidade: "Montevidéu", flag: "uy", porta: "Residência permanente do Mercosul", custo: "Baixo", c: "low", cid: "3 a 5 anos", idioma: "Espanhol", pitch: "Residência permanente direta, só com a nacionalidade e a ficha limpa." },
+    argentina: { nome: "Argentina", cidade: "Buenos Aires", flag: "ar", porta: "Residência Mercosul", custo: "Baixo", c: "low", cid: "2 anos", idioma: "Espanhol", pitch: "Residência só pela nacionalidade, numa cidade grande perto do Brasil." },
+    chile: { nome: "Chile", cidade: "Santiago", flag: "cl", porta: "Visto Mercosul (2 anos)", custo: "Baixo a médio", c: "mid", cid: "5 anos", idioma: "Espanhol", pitch: "Economia organizada e salários entre os maiores da região." },
+    paraguai: { nome: "Paraguai", cidade: "Assunção", flag: "py", porta: "Residência temporária Mercosul", custo: "Baixo", c: "low", cid: "3 anos", idioma: "Espanhol e guarani", pitch: "Custo de vida e impostos baixos, e residência rápida." }
+  };
+  const IATA = { portugal: "LIS", espanha: "MAD", italia: "FCO", irlanda: "DUB", canada: "YYZ", eua: "JFK", alemanha: "BER", australia: "SYD", japao: "HND", uruguai: "MVD", argentina: "EZE", chile: "SCL", paraguai: "ASU" };
+  const ORDER = ["portugal", "espanha", "italia", "irlanda", "canada", "eua", "alemanha", "australia", "japao", "uruguai", "argentina", "chile", "paraguai"];
+  const LATAM = ["uruguai", "argentina", "chile", "paraguai"];
+  const EUROPA = ["portugal", "espanha", "italia", "irlanda", "alemanha"];
+  const foto = k => "assets/fotos/" + k + ".jpg";
+  const flag = k => "assets/bandeiras/" + C[k].flag + ".png";
+
+  /* ---------------- perguntas ---------------- */
+  const Q = [
+    { id: "motivo", t: "Por que você quer sair do Brasil?", h: "Escolha o motivo mais forte.", o: [
+      ["seg", "Segurança", "Medo de assalto e violência no dia a dia"], ["sal", "Salário e oportunidade", "Trabalho muito e o dinheiro não rende"],
+      ["fil", "O futuro dos meus filhos", "Quero que eles cresçam com mais tranquilidade"], ["vida", "Qualidade de vida", "Transporte, saúde, natureza, menos estresse"],
+      ["est", "Estudar fora", "Fazer um curso ou aprender outro idioma"] ] },
+    { id: "desc", t: "Você tem pai, mãe ou avós de outro país?", h: "Isso pode abrir uma porta de cidadania.", o: [
+      ["ita", "Sim, italianos", ""], ["ptes", "Sim, portugueses ou espanhóis", ""], ["jap", "Sim, japoneses", ""], ["nao", "Não ou não sei", ""] ] },
+    { id: "trab", t: "Como você ganha dinheiro hoje?", h: "", o: [
+      ["dip", "Tenho diploma de faculdade", "Saúde, engenharia, TI, educação..."], ["clt", "Trabalho de carteira assinada", "Sem curso superior"],
+      ["rem", "Trabalho remoto ou para clientes de fora", "Recebo pela internet"], ["emp", "Sou autônomo ou tenho empresa", ""],
+      ["stu", "Estou estudando ou procurando emprego", ""] ] },
+    { id: "idioma", t: "Você fala outro idioma?", h: "Mesmo o básico conta.", o: [
+      ["en", "Inglês", ""], ["es", "Espanhol", ""], ["ambos", "Inglês e espanhol", ""], ["nenhum", "Nenhum ainda", ""] ] },
+    { id: "grana", t: "Quanto você consegue juntar até a mudança?", h: "Contando passagem, documentos e reserva.", o: [
+      ["a", "Menos de R$ 10 mil", ""], ["b", "Entre R$ 10 mil e R$ 30 mil", ""], ["c", "Entre R$ 30 mil e R$ 80 mil", ""], ["d", "Mais de R$ 80 mil", ""] ] },
+    { id: "regiao", t: "Você prefere ficar perto ou ir longe?", h: "", o: [
+      ["lat", "Perto, na América Latina", "Dá para voltar de ônibus ou de carro"], ["eur", "Europa", ""], ["nam", "América do Norte", ""], ["tanto", "Tanto faz, quero o melhor caminho", ""] ] }
+  ];
+
+  const RULES = {
+    motivo: { seg: { uruguai: 3, portugal: 2, chile: 1, japao: 1, irlanda: 1, canada: 1 }, sal: { alemanha: 3, canada: 3, irlanda: 1, australia: 2, eua: 1, chile: 2 },
+      fil: { portugal: 3, canada: 2, uruguai: 2, espanha: 1 }, vida: { portugal: 2, espanha: 3, uruguai: 1, australia: 1 }, est: { irlanda: 3, canada: 2, australia: 2 } },
+    desc: { ita: { italia: 8 }, ptes: { portugal: 5, espanha: 5 }, jap: { japao: 8 }, nao: {} },
+    trab: { dip: { alemanha: 4, canada: 3, portugal: 1, irlanda: 1 }, clt: { portugal: 3, chile: 2, irlanda: 1, uruguai: 1 }, rem: { espanha: 4, portugal: 3, paraguai: 2, uruguai: 1 },
+      emp: { paraguai: 4, portugal: 2, uruguai: 2 }, stu: { irlanda: 4, canada: 2, australia: 2 } },
+    idioma: { en: { irlanda: 2, canada: 2, australia: 2, eua: 1 }, es: { espanha: 2, uruguai: 2, argentina: 2, chile: 2, paraguai: 1 },
+      ambos: { irlanda: 1, canada: 2, espanha: 2, chile: 1, uruguai: 1 }, nenhum: { portugal: 4, uruguai: 1, paraguai: 1, argentina: 1 } },
+    grana: { a: { paraguai: 4, argentina: 3, uruguai: 2, portugal: 1 }, b: { portugal: 2, uruguai: 2, chile: 2, espanha: 1, irlanda: 1 },
+      c: { irlanda: 2, alemanha: 2, espanha: 2, portugal: 1, canada: 1 }, d: { canada: 3, australia: 3, eua: 2, alemanha: 1 } },
+    regiao: { lat: { uruguai: 5, argentina: 4, chile: 4, paraguai: 4 }, eur: { portugal: 4, espanha: 4, irlanda: 3, alemanha: 3, italia: 3 },
+      nam: { canada: 5, eua: 3 }, tanto: {} }
+  };
+
+  function score(ans) {
+    const s = {}; ORDER.forEach(k => s[k] = 0);
+    for (const q in ans) { const r = (RULES[q] || {})[ans[q]] || {}; for (const k in r) s[k] += r[k]; }
+    if (ans.grana === "a") { s.eua -= 4; s.australia -= 3; s.canada -= 2; }
+    if (ans.desc !== "ita") s.italia -= 3;
+    if (ans.desc !== "jap") s.japao -= 3;
+    return ORDER.slice().sort((a, b) => s[b] - s[a] || ORDER.indexOf(a) - ORDER.indexOf(b));
+  }
+
+  function reasons(k, ans) {
+    const r = [C[k].pitch];
+    if (ans.idioma === "nenhum" && k === "portugal") r.push("Você não precisa aprender outra língua para começar.");
+    if (ans.idioma === "nenhum" && LATAM.includes(k)) r.push("O espanhol é o idioma mais fácil para quem fala português.");
+    if ((ans.grana === "a" || ans.grana === "b") && LATAM.includes(k)) r.push("Dá para começar com pouco: a residência pelo Mercosul tem custo baixo.");
+    if (ans.motivo === "fil" && ["portugal", "canada", "uruguai", "espanha"].includes(k)) r.push("Os vistos desse país permitem levar a família junto.");
+    if (ans.motivo === "seg" && ["uruguai", "portugal", "chile", "japao", "irlanda", "canada"].includes(k)) r.push("É um destino escolhido por brasileiros que buscam mais tranquilidade.");
+    if (ans.trab === "dip" && ["alemanha", "canada"].includes(k)) r.push("Profissionais com diploma estão entre os mais procurados lá.");
+    if (ans.trab === "rem" && ["espanha", "portugal"].includes(k)) r.push("Existe um visto específico para quem trabalha remoto.");
+    if (ans.regiao === "lat" && LATAM.includes(k)) r.push("Fica perto: dá para visitar a família sempre que quiser.");
+    if (ans.desc === "ptes" && (k === "portugal" || k === "espanha")) r.push("Sua descendência pode abrir uma porta de cidadania.");
+    return r.slice(0, 3);
+  }
+
+  /* ---------------- fundo com fotos ---------------- */
+  const SLIDES = ["canada", "portugal", "espanha", "alemanha", "uruguai", "irlanda", "chile", "australia"];
+  const slidesEl = document.getElementById("slides");
+  const nowCity = document.getElementById("nowCity");
+  const imgs = SLIDES.map((k, i) => { const im = new Image(); im.src = foto(k); im.alt = ""; im.decoding = "async"; if (i === 0) im.className = "on"; slidesEl.appendChild(im); return im; });
+  let si = 0, locked = null;
+  const label = k => (C[k].cidade + " · " + C[k].nome).toUpperCase();
+  nowCity.textContent = label(SLIDES[0]);
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function showSlide(k) {
+    let idx = SLIDES.indexOf(k);
+    if (idx < 0) { const im = new Image(); im.src = foto(k); im.alt = ""; slidesEl.appendChild(im); imgs.push(im); SLIDES.push(k); idx = SLIDES.length - 1; }
+    imgs.forEach((im, i) => im.classList.toggle("on", i === idx)); si = idx; nowCity.textContent = label(k);
+  }
+  if (!reduce) setInterval(() => { if (locked) return; si = (si + 1) % 8; showSlide(SLIDES[si]); }, 5200);
+
+  /* ---------------- quiz ---------------- */
+  const body = document.getElementById("quizBody");
+  const plane = document.getElementById("plane");
+  const routeTo = document.getElementById("routeTo");
+  const qLabel = document.getElementById("qLabel"), qNum = document.getElementById("qNum");
+  let ans = {}, cur = -1;
+  const check = '<svg><use href="#i-check"/></svg>';
+
+  function setProgress(p) { plane.style.left = (p * 100) + "%"; }
+
+  function intro() {
+    cur = -1; setProgress(0); routeTo.textContent = "???"; qLabel.textContent = "Seu teste de destino"; qNum.textContent = "6 perguntas";
+    body.innerHTML = '<div class="step"><h2>Descubra seus 2 melhores destinos</h2>' +
+      '<ul class="clean intro-list"><li>' + check + '<span>Considera seu motivo, profissão, idioma e quanto você consegue juntar</span></li>' +
+      '<li>' + check + '<span>Compara os 13 países do guia, incluindo o atalho do Mercosul</span></li>' +
+      '<li>' + check + '<span>Mostra a porta de entrada e o tempo até a cidadania</span></li></ul>' +
+      '<div><button class="btn big pulse" id="startQ" type="button">Começar o teste <span class="arrow">→</span></button></div>' +
+      '<p class="fine">É uma sugestão baseada nas suas respostas, não uma consultoria nem garantia de visto.</p></div>';
+    document.getElementById("startQ").addEventListener("click", () => ask(0));
+  }
+
+  function ask(i) {
+    cur = i; const q = Q[i];
+    setProgress(i / Q.length); qLabel.textContent = "Pergunta " + (i + 1) + " de " + Q.length; qNum.textContent = Math.round(i / Q.length * 100) + "% do voo";
+    const keys = "ABCDE";
+    body.innerHTML = '<div class="step"><h2>' + q.t + '</h2>' + (q.h ? '<p class="help">' + q.h + '</p>' : '') +
+      '<div class="opts" role="group" aria-label="' + q.t + '">' + q.o.map((o, j) =>
+        '<button class="opt' + (ans[q.id] === o[0] ? ' picked' : '') + '" type="button" data-v="' + o[0] + '"><span class="key">' + keys[j] + '</span><span>' + o[1] + (o[2] ? '<small>' + o[2] + '</small>' : '') + '</span></button>').join('') +
+      '</div><div class="qnav">' + (i > 0 ? '<button class="link" type="button" id="backQ">← Voltar</button>' : '<span></span>') + '<span class="fine">Toque em uma opção</span></div></div>';
+    body.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      b.classList.add("picked"); ans[q.id] = b.dataset.v;
+      setTimeout(() => (i + 1 < Q.length ? ask(i + 1) : loading()), 220);
+    }));
+    const back = document.getElementById("backQ"); if (back) back.addEventListener("click", () => ask(i - 1));
+    const first = body.querySelector(".opt"); if (first && i > 0) first.focus({ preventScroll: true });
+  }
+
+  function loading() {
+    setProgress(0.92); qLabel.textContent = "Analisando seu perfil"; qNum.textContent = "quase lá";
+    body.innerHTML = '<div class="flapboard"><p class="lbl">Procurando o seu voo</p><div class="flaps" id="flaps"></div><p class="fine">Comparando 13 países com as suas respostas</p></div>';
+    const flaps = document.getElementById("flaps");
+    const words = ["LISBOA", "TORONTO", "MADRI", "DUBLIN", "BERLIM", "MONTEVIDÉU", "SANTIAGO", "SYDNEY"];
+    const N = 10; for (let i = 0; i < N; i++) flaps.appendChild(document.createElement("span"));
+    let n = 0;
+    const tick = setInterval(() => {
+      const w = words[n % words.length].padEnd(N, " ");
+      [...flaps.children].forEach((s, i) => s.textContent = w[i]);
+      n++;
+    }, 170);
+    setTimeout(() => { clearInterval(tick); result(score(ans)); }, reduce ? 300 : 2100);
+  }
+
+  function result(rank, fromStore) {
+    const a = rank[0], b = rank[1], A = C[a], B = C[b];
+    setProgress(1); routeTo.textContent = IATA[a];
+    qLabel.textContent = "Seu cartão de embarque"; qNum.textContent = "100% do voo";
+    locked = a; showSlide(a);
+    const why = reasons(a, ans).map(t => '<li>' + check + '<span>' + t + '</span></li>').join('');
+    body.innerHTML = '<div class="pass">' +
+      '<div class="ticket"><div class="ticket-top"><span>Cartão de embarque</span><b>Passaporte Aberto</b></div>' +
+      '<div class="ticket-main"><div class="ticket-left">' +
+        '<div class="fromto">GRU <svg viewBox="0 0 24 24"><use href="#i-plane" transform="rotate(90 12 12)"/></svg> ' + IATA[a] + ' · ' + A.cidade.toUpperCase() + '</div>' +
+        '<div><span class="lbl">Seu destino nº 1</span><div class="dest"><img src="' + flag(a) + '" alt="Bandeira: ' + A.nome + '"><span class="name">' + A.nome + '</span></div></div>' +
+        '<div><span class="lbl">Porta de entrada</span><div class="val">' + A.porta + '</div></div>' +
+        '<div class="grid2"><div><span class="lbl">Cidadania em</span><div class="val">' + A.cid + '</div></div><div><span class="lbl">Idioma</span><div class="val">' + A.idioma + '</div></div></div>' +
+      '</div><div class="ticket-stub"><span class="lbl">Opção nº 2</span><div class="stub-dest"><img src="' + flag(b) + '" alt="Bandeira: ' + B.nome + '"><div class="n2">' + B.nome + '</div></div><div class="barcode" aria-hidden="true"></div></div></div></div>' +
+      '<ul class="clean why">' + why + '</ul>' +
+      '<div><a class="btn big pulse" href="#vsl">Ver como chegar lá <span class="arrow">↓</span></a></div>' +
+      '<div class="qnav"><button class="link" type="button" id="redo">Refazer o teste</button><span class="fine">Sugestão, não garantia de visto.</span></div></div>';
+    document.getElementById("redo").addEventListener("click", () => { ans = {}; locked = null; try { localStorage.removeItem("pa_quiz"); } catch (e) {} personalize(null); intro(); });
+    personalize(a);
+    try { localStorage.setItem("pa_quiz", JSON.stringify({ ans, rank: rank.slice(0, 2) })); } catch (e) {}
+    if (!fromStore) document.getElementById("quiz").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }
+
+  function personalize(k) {
+    const tag = document.getElementById("destTag"), title = document.getElementById("vslTitle");
+    if (!k) { tag.hidden = true; title.textContent = "O brasileiro que mora 2 anos na Espanha pode pedir a cidadania espanhola. Quase ninguém conta isso."; return; }
+    tag.hidden = false; tag.innerHTML = '<img src="' + flag(k) + '" alt="">Seu destino: ' + C[k].nome;
+    const art = { portugal: "", canada: "o ", chile: "o ", japao: "o ", uruguai: "o ", paraguai: "o ", eua: "os " };
+    title.textContent = "Agora veja como o guia leva você até " + (k in art ? art[k] : "a ") + C[k].nome + ".";
+  }
+
+  try { const st = JSON.parse(localStorage.getItem("pa_quiz") || "null"); if (st && st.rank) { ans = st.ans || {}; result(st.rank, true); } else intro(); } catch (e) { intro(); }
+
+  /* ---------------- VSL ---------------- */
+  const video = document.getElementById("vslVideo"), playBtn = document.getElementById("playBtn");
+  playBtn.addEventListener("click", () => { video.muted = false; video.controls = true; playBtn.hidden = true; const p = video.play(); if (p && p.catch) p.catch(() => { playBtn.hidden = false; }); });
+  video.addEventListener("ended", () => { video.controls = false; playBtn.hidden = false; playBtn.querySelector(".ptxt").textContent = "Assistir de novo"; });
+
+  /* ---------------- painel de partidas ---------------- */
+  const board = document.getElementById("board");
+  ORDER.forEach(k => {
+    const c = C[k], row = document.createElement("div");
+    row.className = "board-row"; row.setAttribute("role", "row");
+    row.innerHTML = '<span class="c-dest" role="cell"><img src="' + flag(k) + '" alt=""><span><span class="flip">' + c.nome.toUpperCase() + '</span><span class="c-city">' + c.cidade + '</span></span></span>' +
+      '<span class="c-door" role="cell"><span class="mlabel">Porta de entrada</span>' + c.porta + '</span>' +
+      '<span role="cell"><span class="mlabel">Custo</span><span class="cost ' + c.c + '">' + c.custo + '</span></span>' +
+      '<span role="cell"><span class="mlabel">Cidadania</span>' + c.cid + '</span>';
+    board.appendChild(row);
+  });
+  const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  function flip(el) {
+    const fin = el.textContent; let f = 0;
+    const t = setInterval(() => {
+      el.textContent = fin.split("").map((ch, i) => (ch === " " || i < f ? ch : ABC[Math.floor(Math.random() * 26)])).join("");
+      f += 1; if (f > fin.length) { clearInterval(t); el.textContent = fin; }
+    }, 45);
+  }
+  if (!reduce && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll(".flip").forEach((el, i) => setTimeout(() => flip(el), i * 90)); io.unobserve(e.target); } }), { threshold: 0.25 });
+    io.observe(board);
+  }
+
+  /* ---------------- fotos dos destinos ---------------- */
+  const mt = document.getElementById("mtrack");
+  const cards = ORDER.map(k => '<figure class="pcard"><img src="' + foto(k) + '" alt="' + C[k].cidade + ', ' + C[k].nome + '" loading="lazy"><figcaption><img src="' + flag(k) + '" alt=""><span><b>' + C[k].nome + '</b><span>' + C[k].cidade + '</span></span></figcaption></figure>').join("");
+  mt.innerHTML = cards + cards.replace(/<figure class="pcard">/g, '<figure class="pcard" aria-hidden="true">');
+
+  /* ---------------- checkout ---------------- */
+  const note = document.getElementById("buyNote");
+  document.querySelectorAll(".js-buy").forEach(a => {
+    if (CHECKOUT_URL) { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; }
+  });
+  document.getElementById("buyMain").addEventListener("click", e => {
+    if (!CHECKOUT_URL) { e.preventDefault(); note.textContent = "Link de pagamento ainda não configurado. Cole o link do checkout em CHECKOUT_URL no topo da página."; }
+  });
+
+  /* ---------------- barra fixa ---------------- */
+  const sticky = document.getElementById("sticky"), vsl = document.getElementById("vsl"), oferta = document.getElementById("oferta");
+  function onScroll() {
+    const past = vsl.getBoundingClientRect().top < window.innerHeight * 0.2;
+    const r = oferta.getBoundingClientRect(); const inOffer = r.top < window.innerHeight && r.bottom > 0;
+    const show = past && !inOffer; sticky.classList.toggle("show", show); sticky.setAttribute("aria-hidden", show ? "false" : "true");
+    sticky.querySelector("a").tabIndex = show ? 0 : -1;
+  }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+})();
+</script>
+
+</body>
+</html>
